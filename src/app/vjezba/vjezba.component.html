@@ -1,0 +1,29 @@
+<p>
+  vjezba works!
+</p>
+<button (click)='getKave()'>get kave - button</button>
+<button (click)='dodajKavu()'>dodaj - button</button>
+
+
+
+
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">IME:</th>
+      <th scope="col">ID:</th>
+      <th scope="col">GRADE:</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let bl of bla"> 
+      <td>{{bl.name}}</td>
+      <td>{{bl.id}}</td>
+      <td>{{bl.grade}}</td>
+      <td>
+        <button (click)="izbrisi(bl.id)">izbrisi - button</button>
+      </td>
+    </tr>
+  </tbody>
+</table> 

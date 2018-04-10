@@ -1,0 +1,19 @@
+{
+  "coffee": [
+    {
+      "id": 1,
+      "name": "crna",
+      "grade": 5
+    },
+    {
+      "id": 2,
+      "name": "bijela",
+      "grade": 2
+    },
+    {
+      "name": "New Title",
+      "id": 3,
+      "grade": ""
+    }
+  ]
+}

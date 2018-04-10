@@ -1,0 +1,19 @@
+<div>
+  <ul class="lista">
+    <li class="kava" *ngFor="let kava of kave">
+      {{kava.name}}
+    </li>
+  </ul>
+</div>
+<div>
+  <button class="dodavanja" (click)="create()">Dodaj</button>
+
+  <button class="osvezi" (click)="getAllCoffees()">Osvjezi</button>
+</div>
+<div>
+  <ul class="listakafe">
+    <li class="kafe" *ngFor="let kafa of kafe$ | async">
+      {{ kafa.name }}
+    </li>
+</ul>
+</div>
