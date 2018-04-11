@@ -4,8 +4,27 @@
 <button (click)='getKave()'>get kave - button</button>
 <button (click)='dodajKavu()'>dodaj - button</button>
 
+<div class="panel-body inputcoffee">
+  <form #f="ngForm">
 
+    <div class="form-group">
+      <label class="col-md-4">Ime kave:</label>
+      <input type="text" class="form-control"
+      [(ngModel)]="imekafe"
+        name="ime_kave"/>
+    </div>
+    <div class="form-group">
+      <label class="col-md-4">Ocjena:</label>
+      <input type="text" class="form-control"
+      [(ngModel)]="brojkakafe"
+       name="ocjena_kave"/>
+    </div>
+    <div class="form-group">
+      <button (click)="dodajKavu()" class="btn btn-primary">Dodaj</button>
+    </div>
 
+  </form>
+</div>
 
 <table class="table table-hover">
   <thead>
@@ -17,12 +36,12 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let bl of bla"> 
-      <td>{{bl.name}}</td>
-      <td>{{bl.id}}</td>
-      <td>{{bl.grade}}</td>
+    <tr *ngFor="let bl of bla" > 
+      <td><p class="test">{{bl.name}}</p></td>
+      <td><p class="test">{{bl.id}}</p></td>
+      <td><p class="test">{{bl.grade}}</p></td>
       <td>
-        <button (click)="izbrisi(bl.id)">izbrisi - button</button>
+        <button (click)="izbrisi(bl.id)" class="btn btn-primary">izbrisi - button</button>
       </td>
     </tr>
   </tbody>

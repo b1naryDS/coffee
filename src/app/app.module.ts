@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { routes } from './app.router';
 import { HttpModule } from '@angular/http'; 
+import { FormsModule }   from '@angular/forms';
 
 
 
@@ -23,7 +24,8 @@ import { VjezbaComponent } from './vjezba/vjezba.component';
   imports: [
     BrowserModule,
     routes,
-    HttpModule
+    HttpModule,
+    FormsModule
   ],
   providers: [DataService],
   bootstrap: [AppComponent]

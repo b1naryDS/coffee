@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import { DataService } from '../data.service';
-
+import { FormGroup } from '@angular/forms';
 @Component({
   selector: 'app-vjezba',
   templateUrl: './vjezba.component.html',
@@ -11,7 +11,9 @@ import { DataService } from '../data.service';
 })
 export class VjezbaComponent implements OnInit, OnDestroy {
 
-  constructor(private apiService: DataService) { }
+  constructor(private apiService: DataService) {
+    
+  }
 
 
   ngOnInit() {
@@ -19,14 +21,17 @@ export class VjezbaComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(){  }
+  imeKave: string;
   bla: kavaInterface[];
   size: number;
 
   kave: any;
   abc$: Observable<any>;
-  newKava: Observable<any>;
-  
+  //newKava: Observable<any>;
 
+  imekafe: string;
+  brojkakafe:number;
+  t: any;
   getKave(){
     this.apiService.find().subscribe(data => {this.bla = data; console.log(this.bla);this.size = this.bla.length;console.log(this.size);});
     console.log(this.bla);
@@ -34,23 +39,32 @@ export class VjezbaComponent implements OnInit, OnDestroy {
 
 
   dodajKavu(){
-    const kava={
-      id:``,
-      name: `kava test`,
-      grade: 3
+    var testnaKava: kavaInterface = {
+      name: this.imekafe,
+      grade: this.brojkakafe
     }
-    this.apiService.create(kava).subscribe(response => this.bla.push(response));
+    console.log(testnaKava);
+    const newKava: kavaInterface = {
+      name:"",
+      grade:0
+    };
+    
+    
+    this.apiService.create(testnaKava).subscribe(response => this.bla.push(response));
   }
 
   izbrisi(id){
-    this.apiService.delete(id).subscribe();
+    this.apiService.delete(id).subscribe((response) => {this.t=response.status;console.log(this.t);} );
   }
-
+  testa(f){
+    console.log(f.value);
+  }
+  
   
 
 }
 export interface kavaInterface{
   name:string;
-  id:number;
+  id?:number;
   grade:number;
 }
