@@ -54,7 +54,15 @@ export class VjezbaComponent implements OnInit, OnDestroy {
   }
 
   izbrisi(id){
-    this.apiService.delete(id).subscribe((response) => {this.t=response.status;console.log(this.t);} );
+    this.apiService.delete(id)
+    .map((response)=>{if(response.status==200){
+      return response;
+    }
+    else{
+      console.log("error");
+    }
+  })
+    .subscribe((response) => {this.t=response.status;console.log(this.t);this.getKave()} );
   }
   testa(f){
     console.log(f.value);
