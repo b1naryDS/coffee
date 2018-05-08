@@ -6,19 +6,12 @@
       "grade": 5
     },
     {
-      "name": "New Title",
-      "id": 3,
-      "grade": 2
-    },
-    {
       "name": "a",
       "grade": "3",
-      "id": 6
+      "id": 4
     },
     {
-      "name": "a",
-      "grade": "3",
-      "id": 8
+      "id": 5
     }
   ]
 }

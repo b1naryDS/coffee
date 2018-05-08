@@ -1,8 +1,3 @@
-<p>
-  vjezba works!
-</p>
-<button (click)='getKave()'>get kave - button</button>
-<button (click)='dodajKavu()'>dodaj - button</button>
 
 <div class="panel-body inputcoffee">
   <form #f="ngForm">
@@ -15,7 +10,7 @@
     </div>
     <div class="form-group">
       <label class="col-md-4">Ocjena:</label>
-      <input type="text" class="form-control"
+      <input type="number" class="form-control"
       [(ngModel)]="brojkakafe"
        name="ocjena_kave"/>
     </div>
@@ -36,12 +31,12 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let bl of bla" > 
+    <tr *ngFor="let bl of bla" (click)="onClicka(bl)"> 
       <td><p class="test">{{bl.name}}</p></td>
       <td><p class="test">{{bl.id}}</p></td>
       <td><p class="test">{{bl.grade}}</p></td>
       <td>
-        <button (click)="izbrisi(bl.id)" class="btn btn-primary">izbrisi - button</button>
+        <button (click)="izbrisi(bl.id)" class="btn btn-primary">izbrisi</button>
       </td>
     </tr>
   </tbody>

@@ -26,5 +26,10 @@ export class DataService {
   delete(id){
     return this.http.delete(`${this.apiUrl}/coffee/${id}`);
   }
+
+  update(data){
+    return this.http.put(`${this.apiUrl}/coffee/${data.id}`, data)
+      .map((res) => res.json());
+  }
 }
 

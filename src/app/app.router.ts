@@ -8,7 +8,7 @@ import {CoffeesComponent} from './coffees/coffees.component';
 import { VjezbaComponent } from './vjezba/vjezba.component';
 
 export const router: Routes= [
-    {path: '', redirectTo: 'about',pathMatch: 'full'},
+    {path: '', redirectTo: 'vjezba',pathMatch: 'full'},
     {path: 'about', component: AboutComponent},
     {path: 'services', component: ServicesComponent},
     {path: 'coffees', component: CoffeesComponent},
