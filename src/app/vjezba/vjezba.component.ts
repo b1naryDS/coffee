@@ -66,12 +66,15 @@ export class VjezbaComponent implements OnInit, OnDestroy {
     this.update(blaa);
     var div = document.getElementById('bl'+blaa.id);
     var klas = document.getElementsByClassName('testirambre');
-    var klasuklas = document.getElementsByClassName('jostestirambre');
+    var klasuklas = document.getElementsByClassName('jostestirambre') as HTMLCollectionOf<HTMLElement>;
     var duljinaklas = klas.length;
+    
     //console.log(klas);
     console.log(klasuklas);
     for(var i = 0; i<duljinaklas; i++){
       console.log(klas[i]);
+      klasuklas[i].style.display = 'none';
+
     }
 
     if(div.style.display!=='none'){
