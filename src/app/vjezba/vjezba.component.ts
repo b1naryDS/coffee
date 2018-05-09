@@ -12,10 +12,7 @@ import { FormGroup } from '@angular/forms';
 export class VjezbaComponent implements OnInit, OnDestroy {
 
   constructor(private apiService: DataService) {
-    
   }
-
-
   ngOnInit() {
     this.apiService.find().subscribe(data =>{this.bla = data;});
   }
@@ -24,7 +21,7 @@ export class VjezbaComponent implements OnInit, OnDestroy {
   imeKave: string;
   bla: kavaInterface[];
   size: number;
-
+  brojedit: number = 0;
   kave: any;
   abc$: Observable<any>;
   //newKava: Observable<any>;
@@ -36,7 +33,6 @@ export class VjezbaComponent implements OnInit, OnDestroy {
     this.apiService.find().subscribe(data => {this.bla = data; console.log(this.bla);this.size = this.bla.length;console.log(this.size);});
     console.log(this.bla);
   }
-
 
   dodajKavu(){
     var testnaKava: kavaInterface = {
@@ -65,8 +61,25 @@ export class VjezbaComponent implements OnInit, OnDestroy {
     .subscribe((response) => {this.t=response.status;console.log(this.t);this.getKave()} );
   }
   onClicka(blaa){
+    this.brojedit = 1;
     console.log(blaa.name);
     this.update(blaa);
+    var div = document.getElementById('bl'+blaa.id);
+    var klas = document.getElementsByClassName('testirambre');
+    var klasuklas = document.getElementsByClassName('jostestirambre');
+    var duljinaklas = klas.length;
+    //console.log(klas);
+    console.log(klasuklas);
+    for(var i = 0; i<duljinaklas; i++){
+      console.log(klas[i]);
+    }
+
+    if(div.style.display!=='none'){
+      div.style.display = 'none';
+    }
+    else{
+      div.style.display = 'block';
+    }
   }
   update(blaa){
     var blakava: kavaInterface = {

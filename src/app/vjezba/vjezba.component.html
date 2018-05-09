@@ -31,13 +31,16 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let bl of bla" (click)="onClicka(bl)"> 
+    <tr class="testirambre" *ngFor="let bl of bla" (click)="onClicka(bl)"> 
       <td><p class="test">{{bl.name}}</p></td>
       <td><p class="test">{{bl.id}}</p></td>
       <td><p class="test">{{bl.grade}}</p></td>
       <td>
         <button (click)="izbrisi(bl.id)" class="btn btn-primary">izbrisi</button>
       </td>
+      <div class="jostestirambre" id="{{ 'bl' + bl.id }}" style="display: none;">
+        Test
+      </div>
     </tr>
   </tbody>
 </table> 
