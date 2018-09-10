@@ -1,14 +1,28 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, NgModule } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/operator/map';
+
 import { DataService } from '../data.service';
 import { FormGroup } from '@angular/forms';
+import {MatButtonModule, MatCheckboxModule, MatRippleModule, MatCardModule} from '@angular/material';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { Observable, Subject, throwError} from 'rxjs';
+import { map } from 'rxjs/operators';
+import {MatExpansionModule} from '@angular/material/expansion';
+
+@NgModule({
+  imports: [MatButtonModule, 
+    MatCheckboxModule,
+    MatExpansionModule,
+    MatRippleModule,
+    MatCardModule],
+  exports: [MatExpansionModule]
+})
 @Component({
   selector: 'app-vjezba',
   templateUrl: './vjezba.component.html',
   styleUrls: ['./vjezba.component.css']
 })
+
 export class VjezbaComponent implements OnInit, OnDestroy {
 
   constructor(private apiService: DataService) {
@@ -18,19 +32,26 @@ export class VjezbaComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(){  }
+  panelOpenState = false;
   imeKave: string;
   bla: kavaInterface[];
   size: number;
   brojedit: number = 0;
   kave: any;
   abc$: Observable<any>;
+  selected: number;
   //newKava: Observable<any>;
 
   imekafe: string;
   brojkakafe:number;
   t: any;
   getKave(){
-    this.apiService.find().subscribe(data => {this.bla = data; console.log(this.bla);this.size = this.bla.length;console.log(this.size);});
+    this.apiService.find().subscribe(data => {
+      this.bla = data; 
+      console.log(this.bla);
+      this.size = this.bla.length;
+      console.log(this.size);
+    });
     console.log(this.bla);
   }
 
@@ -50,17 +71,19 @@ export class VjezbaComponent implements OnInit, OnDestroy {
   }
 
   izbrisi(id){
-    this.apiService.delete(id)
-    .map((response)=>{if(response.status==200){
+    this.apiService.delete(id).pipe(
+    map((response)=>{if(response.status==200){
       return response;
       }
       else{
         console.log("error");
       }
-    })
+    }))
     .subscribe((response) => {this.t=response.status;console.log(this.t);this.getKave()} );
   }
   onClicka(blaa){
+    this.selected = blaa.id;
+    console.log("id buraz: " + this.selected);
     this.brojedit = 1;
     console.log(blaa.name);
     this.update(blaa);
@@ -71,18 +94,6 @@ export class VjezbaComponent implements OnInit, OnDestroy {
     
     //console.log(klas);
     console.log(klasuklas);
-    for(var i = 0; i<duljinaklas; i++){
-      console.log(klas[i]);
-      klasuklas[i].style.display = 'none';
-
-    }
-
-    if(div.style.display!=='none'){
-      div.style.display = 'none';
-    }
-    else{
-      div.style.display = 'block';
-    }
   }
   update(blaa){
     var blakava: kavaInterface = {

@@ -12,6 +12,7 @@ import { ServicesComponent } from './services/services.component';
 import { DataService } from './data.service';
 import { CoffeesComponent } from './coffees/coffees.component';
 import { VjezbaComponent } from './vjezba/vjezba.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { VjezbaComponent } from './vjezba/vjezba.component';
     BrowserModule,
     routes,
     HttpModule,
-    FormsModule
+    FormsModule,
+    BrowserAnimationsModule
   ],
   providers: [DataService],
   bootstrap: [AppComponent]

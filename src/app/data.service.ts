@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Http, Response } from '@angular/http';
-import { Observable } from 'rxjs/Observable';
-import 'rxjs';
+import { Observable, Subject, throwError} from 'rxjs';
+import { map } from 'rxjs/operators';
 
 @Injectable()
 
@@ -14,13 +14,13 @@ export class DataService {
 
 
   find(){
-    return this.http.get(`${this.apiUrl}/coffee`)
-      .map((res) => res.json());
+    return this.http.get(`${this.apiUrl}/coffee`).pipe(
+      map((res) => res.json()));
   }
 
   create(data) {
-    return this.http.post(`${this.apiUrl}/coffee`, data)
-      .map((res) => res.json());
+    return this.http.post(`${this.apiUrl}/coffee`, data).pipe(
+      map((res) => res.json()));
   }
 
   delete(id){
@@ -28,8 +28,8 @@ export class DataService {
   }
 
   update(data){
-    return this.http.put(`${this.apiUrl}/coffee/${data.id}`, data)
-      .map((res) => res.json());
+    return this.http.put(`${this.apiUrl}/coffee/${data.id}`, data).pipe(
+      map((res) => res.json()));
   }
 }
 

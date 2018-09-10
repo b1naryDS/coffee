@@ -38,9 +38,13 @@
       <td>
         <button (click)="izbrisi(bl.id)" class="btn btn-primary">izbrisi</button>
       </td>
-      <div class="jostestirambre" id="{{ 'bl' + bl.id }}" style="display: none;">
+      <div [hidden]="!(bl.id === selected)">
         Test
       </div>
     </tr>
   </tbody>
 </table> 
+<!--
+<mat-expansion-panel>
+</mat-expansion-panel>
+-->
