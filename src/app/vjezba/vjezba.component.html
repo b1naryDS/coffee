@@ -21,30 +21,59 @@
   </form>
 </div>
 
-<table class="table table-hover">
-  <thead>
-    <tr>
-      <th scope="col">IME:</th>
-      <th scope="col">ID:</th>
-      <th scope="col">GRADE:</th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr class="testirambre" *ngFor="let bl of bla" (click)="onClicka(bl)"> 
-      <td><p class="test">{{bl.name}}</p></td>
-      <td><p class="test">{{bl.id}}</p></td>
-      <td><p class="test">{{bl.grade}}</p></td>
-      <td>
-        <button (click)="izbrisi(bl.id)" class="btn btn-primary">izbrisi</button>
-      </td>
-      <div [hidden]="!(bl.id === selected)">
-        Test
+<mat-accordion displayMode="flat" multi class="mat-table testHeader">
+  <section matSort class="mat-elevation-z2 mat-header-row">
+    <span class="mat-header-cell" mat-sort-header="vesselName">IME:</span>
+    <span class="mat-header-cell" mat-sort-header="vesselId">ID:</span>
+    <span class="mat-header-cell" mat-sort-header="vesselStatus">OCJENA:</span>
+  </section>
+
+  <mat-expansion-panel *ngFor="let bl of bla" class="test3">
+    <mat-expansion-panel-header class="test3">
+      <span class="mat-cell">{{bl.name}}</span>
+      <span class="mat-cell">{{bl.id}}</span>
+      <span class="mat-cell">{{bl.grade}}</span>
+    </mat-expansion-panel-header>
+    
+    <mat-panel-description class="mat-row rowB">
+      <!--mat-row  <span class="mat-cell">Edit: </span>
+      <button (click)="izbrisi(bl.id)">X</button>-->
+      <div class="example-container" style="overflow: hidden">
+
+          <br>
+        <mat-form-field hintLabel="Max 20 characters">
+          <input type="text" matInput #input maxlength="20" placeholder="Edit IME">
+          <mat-hint align="end">{{input.value?.length || 0}}/20</mat-hint>
+        </mat-form-field>
+        <br>
+      
+        <mat-form-field hintLabel="1 - 5">
+          <input type="number" min="1" max="5" maxlength="1" matInput #input placeholder="Edit OCJENA">
+          <!--<mat-hint align="end">{{input.value?.length || 0}}/10</mat-hint>-->
+        </mat-form-field>
+        <br>
+        
+      <button (click)="izbrisi(bl.id)" style="float: right;">Delete</button>
+      <br>
+      <button (click)="izbrisi(bl.id)" style="float: right;">Submit Edit</button>
+      <br>
+        
       </div>
-    </tr>
-  </tbody>
-</table> 
-<!--
-<mat-expansion-panel>
-</mat-expansion-panel>
--->
+      <!--
+      <mat-form-field>
+        <input matInput placeholder="Input">
+      </mat-form-field>
+    
+      <mat-form-field>
+        <textarea matInput placeholder="Textarea"></textarea>
+      </mat-form-field>
+    
+      <mat-form-field>
+        <mat-select placeholder="Select">
+          <mat-option value="option">Option</mat-option>
+        </mat-select>
+      </mat-form-field>-->
+    </mat-panel-description>
+  </mat-expansion-panel>
+
+</mat-accordion>

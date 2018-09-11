@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, NgModule } from '@angular/core';
+import { Component, OnInit, OnDestroy, NgModule,ViewChild } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 import { DataService } from '../data.service';
@@ -8,6 +8,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { Observable, Subject, throwError} from 'rxjs';
 import { map } from 'rxjs/operators';
 import {MatExpansionModule} from '@angular/material/expansion';
+import {MatSort, MatTableDataSource} from '@angular/material';
 
 @NgModule({
   imports: [MatButtonModule, 
@@ -20,18 +21,23 @@ import {MatExpansionModule} from '@angular/material/expansion';
 @Component({
   selector: 'app-vjezba',
   templateUrl: './vjezba.component.html',
-  styleUrls: ['./vjezba.component.css']
+  styleUrls: ['./vjezba.component.scss']
 })
 
 export class VjezbaComponent implements OnInit, OnDestroy {
-
+  dataSource;
+  @ViewChild(MatSort) sort: MatSort;
   constructor(private apiService: DataService) {
   }
   ngOnInit() {
-    this.apiService.find().subscribe(data =>{this.bla = data;});
+    this.apiService.find().subscribe(data =>{
+      this.bla = data;
+      this.dataSource = new MatTableDataSource(this.bla);
+      this.dataSource.sort = this.sort;});
   }
 
   ngOnDestroy(){  }
+
   panelOpenState = false;
   imeKave: string;
   bla: kavaInterface[];
@@ -56,18 +62,21 @@ export class VjezbaComponent implements OnInit, OnDestroy {
   }
 
   dodajKavu(){
+    var zadnjiBla = this.bla[this.bla.length - 1];
     var testnaKava: kavaInterface = {
       name: this.imekafe,
       grade: this.brojkakafe
     }
     console.log(testnaKava);
     const newKava: kavaInterface = {
-      name:"",
-      grade:0
+      id: zadnjiBla.id+1,
+      name: this.imekafe,
+      grade: this.brojkakafe
     };
+    this.bla.push(newKava);
     
     
-    this.apiService.create(testnaKava).subscribe(response => this.bla.push(response));
+    this.apiService.create(testnaKava).subscribe(response => console.log(response));
   }
 
   izbrisi(id){
@@ -109,4 +118,7 @@ export interface kavaInterface{
   name:string;
   id?:number;
   grade:number;
+}
+function compare(a, b, isAsc) {
+  return (a < b ? -1 : 1) * (isAsc ? 1 : -1);
 }
