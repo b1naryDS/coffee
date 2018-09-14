@@ -16,6 +16,7 @@
     </div>
     <div class="form-group">
       <button (click)="dodajKavu()" class="btn btn-primary">Dodaj</button>
+      <button (click)="consologaj();getKave();" class="btn btn-primary">CONSOLELOG</button>
     </div>
 
   </form>
@@ -53,9 +54,9 @@
         </mat-form-field>
         <br>
         
-      <button (click)="izbrisi(bl.id)" style="float: right;">Delete</button>
+      <button (click)="izbrisi(bl._id)" style="float: right;">Delete</button>
       <br>
-      <button (click)="izbrisi(bl.id)" style="float: right;">Submit Edit</button>
+      <button (click)="update(bl)" style="float: right;">Submit Edit</button>
       <br>
         
       </div>

@@ -1,8 +1,15 @@
 import { Injectable } from '@angular/core';
 import { Http, Response } from '@angular/http';
+import { Headers } from '@angular/http';
 import { Observable, Subject, throwError} from 'rxjs';
 import { map } from 'rxjs/operators';
 
+const httpOptions = {
+  headers: new Headers({
+    'Content-Type':  'application/json',
+    'Authorization': 'my-auth-token'
+  })
+};
 @Injectable()
 
 export class DataService {
@@ -14,21 +21,21 @@ export class DataService {
 
 
   find(){
-    return this.http.get(`${this.apiUrl}/coffee`).pipe(
+    return this.http.get(`${this.apiUrl}/kave`).pipe(
       map((res) => res.json()));
   }
 
   create(data) {
-    return this.http.post(`${this.apiUrl}/coffee`, data).pipe(
+    return this.http.post(`${this.apiUrl}/kave/insert`, data, httpOptions).pipe(
       map((res) => res.json()));
   }
 
   delete(id){
-    return this.http.delete(`${this.apiUrl}/coffee/${id}`);
+    return this.http.delete(`${this.apiUrl}/kave/delete/${id}`,httpOptions);
   }
 
   update(data){
-    return this.http.put(`${this.apiUrl}/coffee/${data.id}`, data).pipe(
+    return this.http.put(`${this.apiUrl}/kave/update/${data._id}`, data, httpOptions).pipe(
       map((res) => res.json()));
   }
 }

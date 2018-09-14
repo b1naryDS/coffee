@@ -31,6 +31,7 @@ export class VjezbaComponent implements OnInit, OnDestroy {
   }
   ngOnInit() {
     this.apiService.find().subscribe(data =>{
+      console.log(data);
       this.bla = data;
       this.dataSource = new MatTableDataSource(this.bla);
       this.dataSource.sort = this.sort;});
@@ -68,18 +69,23 @@ export class VjezbaComponent implements OnInit, OnDestroy {
       grade: this.brojkakafe
     }
     console.log(testnaKava);
-    const newKava: kavaInterface = {
+    const newKava = {
       id: zadnjiBla.id+1,
       name: this.imekafe,
       grade: this.brojkakafe
     };
-    this.bla.push(newKava);
+    //this.bla.push(newKava);
+    console.log("pushed");
     
-    
-    this.apiService.create(testnaKava).subscribe(response => console.log(response));
+    this.apiService.create(newKava).subscribe(res => this.bla.push(res));
+  }
+  consologaj(){
+    console.log(this.bla);
   }
 
   izbrisi(id){
+    console.log("izbrisi ovaj id: ");
+    console.log(id);
     this.apiService.delete(id).pipe(
     map((response)=>{if(response.status==200){
       return response;
@@ -105,13 +111,9 @@ export class VjezbaComponent implements OnInit, OnDestroy {
     console.log(klasuklas);
   }
   update(blaa){
-    var blakava: kavaInterface = {
-      id: blaa.id,
-      name: blaa.name,
-      grade: blaa.grade
-    }
+    
+    console.log(blaa);
   }
-  
 
 }
 export interface kavaInterface{
