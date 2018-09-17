@@ -48,7 +48,8 @@ export class VjezbaComponent implements OnInit, OnDestroy {
   abc$: Observable<any>;
   selected: number;
   //newKava: Observable<any>;
-
+  editImeKave: string;
+  editOcjenaKave: number;
   imekafe: string;
   brojkakafe:number;
   t: any;
@@ -111,8 +112,23 @@ export class VjezbaComponent implements OnInit, OnDestroy {
     console.log(klasuklas);
   }
   update(blaa){
-    
+    console.log("update this: ");
     console.log(blaa);
+    console.log(this.editOcjenaKave);
+    console.log(this.editImeKave);
+    const blah = {
+      update: blaa,
+      a: this.editOcjenaKave,
+      b: this.editImeKave,
+    }
+    const blah2 = {
+      toUpdateId: blaa._id,
+      newGrade: this.editOcjenaKave,
+      newName: this.editImeKave,
+    }
+    console.log(blah);
+    console.log(blah2);
+    //this.apiService.update()
   }
 
 }

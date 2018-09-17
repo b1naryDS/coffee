@@ -43,13 +43,13 @@
 
           <br>
         <mat-form-field hintLabel="Max 20 characters">
-          <input type="text" matInput #input maxlength="20" placeholder="Edit IME">
+          <input type="text" [(ngModel)]="editImeKave" matInput #input maxlength="20" placeholder="Edit IME">
           <mat-hint align="end">{{input.value?.length || 0}}/20</mat-hint>
         </mat-form-field>
         <br>
       
         <mat-form-field hintLabel="1 - 5">
-          <input type="number" min="1" max="5" maxlength="1" matInput #input placeholder="Edit OCJENA">
+          <input type="number" [(ngModel)]="editOcjenaKave" min="1" max="5" maxlength="1" matInput #input placeholder="Edit OCJENA">
           <!--<mat-hint align="end">{{input.value?.length || 0}}/10</mat-hint>-->
         </mat-form-field>
         <br>
