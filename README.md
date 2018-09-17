@@ -2,9 +2,27 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.7.3.
 
-## Development server
+## Start here
+clone repo
+http://localhost:4200/vjezba
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+
+## --mongo--
+download mongo
+navigate to server/bin in mongo folder
+*run 'mongod' in cmd
+*run 'mongo' in cmd
+
+## --server--
+navigate to cloned repo
+*run 'node server.js' in cmd
+
+## --frontend--
+navigate to cloned repo
+*run 'npm install' in cmd
+*run 'ng serve' in cmd
+
+
 
 ## Code scaffolding
 
@@ -26,3 +44,5 @@ Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protrac
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
 "# coffee" 
+
+## API
